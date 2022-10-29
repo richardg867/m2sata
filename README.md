@@ -1,6 +1,6 @@
 # M.2 SATA Port Reclaimer
 
-[pic placeholder]
+![image](https://user-images.githubusercontent.com/540874/198851059-e040aa39-de31-48e6-ac12-ef1f7b898460.png)
 
 This M.2 2280 M-key card allows you to reclaim SATA ports that your motherboard may have as part of the chipset, but are not broken out to SATA connectors since the chipset shares their pins with the M.2 slot's PCI Express lanes.
 
