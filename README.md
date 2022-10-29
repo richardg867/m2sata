@@ -8,7 +8,7 @@ Each SATA port is connected to a data lane of the M.2 card, although not all mot
 
 ## Ordering
 
-I am not going to be offering assembled boards for the foreseeable future, since shipping from Brazil is too expensive and takes too much paperwork. You can order boards from your PCB vendor of choice and assemble them yourself (no SMD work is required); **make sure the thickness is 0.8mm**, and go for ENIG finish if possible for best signal integrity (standard HASL finish is untested).
+I am not going to be offering assembled boards for the foreseeable future, since shipping from Brazil is too expensive and takes too much paperwork. You can order boards from your PCB vendor of choice (Gerber files are in the `gerbers` directory) and assemble them yourself (no SMD work is required); **make sure the PCB thickness is 0.8mm** and the total size is 22mm x 80mm, and go for ENIG finish if possible for best signal integrity (standard HASL finish is untested).
 
 ## Bill of materials
 
