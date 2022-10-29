@@ -4,11 +4,19 @@
 
 This M.2 2280 M-key card allows you to reclaim SATA ports that your motherboard may have as part of the chipset, but are not broken out to SATA connectors since the chipset shares their pins with the M.2 slot's PCI Express lanes.
 
-Each SATA port is connected to a data lane of the M.2 card, although not all motherboards and M.2 slots support more than one SATA port; if you just want one port, there are off-the-shelf M.2 to SATA adapters that will do the job. Read on for compatibility information.
+Each SATA port is connected to a data lane of the M.2 card, although not all motherboards and M.2 slots support more than one SATA port (lane 0); if you just want one port, this adapter can work, but there are off-the-shelf ones that will also do the job. Read on for compatibility information.
+
+## Ordering
+
+I am not going to be offering assembled boards for the foreseeable future, since shipping from Brazil is too expensive and takes too much paperwork. You can order boards from your PCB vendor of choice and assemble them yourself (no SMD work is required); **make sure the thickness is 0.8mm**, and go for ENIG finish if possible for best signal integrity (standard HASL finish is untested).
+
+## Bill of materials
+
+The only BOM item is a vertical through-hole SATA data connector, quantity 1 to 4 according to your needs. I've had success with [**LCSC part C2926857**](https://lcsc.com/product-detail/Card-Edge-Connectors_LOTES-ABA-SAT-010-K15_C2926857.html), though replacements can be [easily found](https://gist.github.com/CRImier/d78ff224db0d781627f211ff5cede573), or even desoldered from a donor board. When considering a replacement, make sure its **retention pins are centered** (aligned with the data pins); some parts have one of the retention pins slightly offset.
 
 ## Motherboard support
 
-This adapter is expected to work (i.e. provide access to more than one SATA port) on **SATA+NVMe M.2 slots** on the following motherboard platforms. Note that actual compatibility is **at your own risk**, since the board or BIOS might not enable normally-unused SATA ports; in my limited testing with the ASUS H170-PLUS D3 (2 SATA ports routed to a single M.2), a drive attached to the second port was not visible in BIOS menus, but it was still initialized by the BIOS and detected by the operating system.
+This adapter is expected to work (i.e. provide access to more than one SATA port) on a **SATA+NVMe M.2 slot** on the following motherboard platforms. Note that actual compatibility is **at your own risk**, since the board or BIOS might not enable normally-unused SATA ports; in my limited testing with the ASUS H170-PLUS D3 (2 SATA ports routed to a single M.2), a drive attached to the second port was not visible in BIOS menus, but it was still initialized by the BIOS and detected by the operating system.
 
 * **Chipsets:**
   * **AMD B550:** Up to 2 ports (0 and 1) from a slot connected to the chipset ("Group 2" - second set of PCIe lanes).
@@ -18,3 +26,7 @@ This adapter is expected to work (i.e. provide access to more than one SATA port
   * **Older stuff:** Some older motherboards which hijack multiple chipset SATA ports for M.2 can make use of this adapter. One example is the aforementioned ASUS H170-PLUS D3, which only exposes 4 of the 6 SATA ports provided by the H170 chipset, with the remaining 2 routed to M.2 slot lanes 0 and 1.
 * **CPUs:**
   * **AMD AM4:** Up to 2 ports (0 and 1) from a slot connected to the CPU. Note that most motherboards already expose these (2 SATA ports shared with the CPU M.2 slot), making this adapter redundant.
+
+## Acknowledgements
+
+Huge thanks to [Arya](https://github.com/CRImier) for helping me with the design (using their [nvme_to_dual_ssd](https://github.com/CRImier/MyKiCad/tree/master/Laptop%20mods/nvme_to_dual_ssd) card as a base) and prototyping of this project.
