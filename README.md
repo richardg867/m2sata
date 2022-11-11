@@ -16,7 +16,9 @@ The only BOM item is a vertical through-hole SATA data connector, quantity 1 to 
 
 ## Motherboard support
 
-This adapter is expected to work (i.e. provide access to more than one SATA port) on a **SATA+NVMe M.2 slot** on the motherboard platforms listed below. Note that actual compatibility is **at your own risk**, since the board or BIOS might not enable normally-unused SATA ports; in my limited testing with the ASUS H170-PLUS D3 (2 SATA ports routed to a single M.2), a drive attached to the second port was not visible in BIOS menus, but it was still initialized by the BIOS and detected by the operating system.
+This adapter is expected to work (i.e. provide access to more than one SATA port) on a **SATA+NVMe M.2 slot** on the motherboard platforms listed below. Note that actual compatibility is **at your own risk**; boards might use an external switch chip to route only a single SATA port to the M.2 slot, or they might not have the SATA/PCIe mode switching signals hooked up for all lanes, or the BIOS might not enable normally-unused SATA ports.
+
+In my limited real world testing with the ASUS H170-PLUS D3 (2 SATA ports routed to a single M.2), a drive attached to the second port was not visible in BIOS menus, but it was still initialized by the BIOS and detected by the operating system.
 
 * **Chipsets:**
   * **AMD B550:** Up to 2 ports (0 and 1) from a slot connected to the chipset ("Group 2" - second set of PCIe lanes).
@@ -29,7 +31,7 @@ This adapter is expected to work (i.e. provide access to more than one SATA port
   
 ### Very technical stuff: polarity inversion
   
-One quirk of SATA is that its B (receive) differential pair has a different polarity than that of the A (transmit) pair or PCIe RX/TX pairs, and unlike most PCIe implementations, it does *not* tolerate polarity inversion. Since the chipset's SerDes expects the same lane polarities in both SATA and PCIe modes, motherboards account for this quirk by inverting the polarity of the first SATA/PCIe lane going to the M.2 slot:
+One quirk of SATA is that its B (receive) differential pair has a different polarity than that of the A (transmit) pair or PCI Express RX/TX pairs, and unlike most PCIe implementations, it does *not* tolerate polarity inversion. Since the chipset's SerDes expects the same lane polarities in both SATA and PCIe modes, motherboards account for this quirk by inverting the polarity of the first SATA/PCIe lane going to the M.2 slot, to satisfy both SATA (cannot be inverted) and PCIe (can be inverted):
 
 | M.2 pin | PCB | Chipset pin |
 | ---: | :---: | :--- |
@@ -42,7 +44,7 @@ One quirk of SATA is that its B (receive) differential pair has a different pola
 | PCIe **RXn+** | 🡺 |PCIe RXn+ or SATA **B+** |
 | PCIe **RXn-** | 🡺 | PCIe RXn- or SATA **B-** |
 
-Since I have yet to see a motherboard which inverts the RX polarity on *all lanes* (not just lane 0), this card inverts it on lanes 1-3 so that they can work properly in SATA mode. If you get connection errors (Linux dmesg: `SATA link down (SStatus 1 SControl 300)`) on ports 1-3 even with high quality cables, you somehow have a motherboard which also inverts lanes 1-3; if you're feeling adventurous, the [jumperable](https://github.com/richardg867/m2sata/tree/jumperable) branch has a variant of the board with jumper links to configure RX polarities at will.
+Since I have yet to see a motherboard which inverts the RX polarity on *all lanes* (not just lane 0), this card inverts it on lanes 1-3 so that they can work properly in SATA mode. If you get connection errors (Linux dmesg: `SATA link down (SStatus 1 SControl 300)`) on ports 1-3 even with high quality cables, you somehow have a motherboard which also inverts lanes 1-3; if you're feeling adventurous, the [jumperable](https://github.com/richardg867/m2sata/tree/jumperable) branch has a special variant of this card with jumper links to configure RX polarities at will.
 
 ## Acknowledgements
 
