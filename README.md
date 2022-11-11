@@ -1,8 +1,6 @@
 # M.2 SATA Port Reclaimer
 
-**Hello Hackaday readers! This design currently [doesn't work properly](https://media.discordapp.net/attachments/1008400899716157540/1036765121474727976/snapshot_2022.10.31_19.11.49.jpg) due to the RX polarity inversion required by SATA, which motherboards only perform on the first lane of SATA+NVMe combo slots. I'll be improving the design in the near future to account for that.**
-
-![image](https://user-images.githubusercontent.com/540874/198851059-e040aa39-de31-48e6-ac12-ef1f7b898460.png)
+![image](https://user-images.githubusercontent.com/540874/201226637-c3770ce9-1cc8-4549-aef1-da8fe55892bc.png)
 
 This M.2 2280 M-key card allows you to reclaim SATA ports that your motherboard may have as part of the chipset, but are not broken out to SATA connectors since the chipset shares their pins with the M.2 slot's PCI Express lanes.
 
@@ -18,7 +16,7 @@ The only BOM item is a vertical through-hole SATA data connector, quantity 1 to 
 
 ## Motherboard support
 
-This adapter is expected to work (i.e. provide access to more than one SATA port) on a **SATA+NVMe M.2 slot** on the following motherboard platforms. Note that actual compatibility is **at your own risk**, since the board or BIOS might not enable normally-unused SATA ports; in my limited testing with the ASUS H170-PLUS D3 (2 SATA ports routed to a single M.2), a drive attached to the second port was not visible in BIOS menus, but it was still initialized by the BIOS and detected by the operating system.
+This adapter is expected to work (i.e. provide access to more than one SATA port) on a **SATA+NVMe M.2 slot** on the motherboard platforms listed below. Note that actual compatibility is **at your own risk**, since the board or BIOS might not enable normally-unused SATA ports; in my limited testing with the ASUS H170-PLUS D3 (2 SATA ports routed to a single M.2), a drive attached to the second port was not visible in BIOS menus, but it was still initialized by the BIOS and detected by the operating system.
 
 * **Chipsets:**
   * **AMD B550:** Up to 2 ports (0 and 1) from a slot connected to the chipset ("Group 2" - second set of PCIe lanes).
@@ -28,6 +26,23 @@ This adapter is expected to work (i.e. provide access to more than one SATA port
   * **Older stuff:** Some older motherboards which hijack multiple chipset SATA ports for M.2 can make use of this adapter. One example is the aforementioned ASUS H170-PLUS D3, which only exposes 4 of the 6 SATA ports provided by the H170 chipset, with the remaining 2 routed to M.2 slot lanes 0 and 1.
 * **CPUs:**
   * **AMD AM4:** Up to 2 ports (0 and 1) from a slot connected to the CPU. Note that most motherboards already expose these (2 SATA ports shared with the CPU M.2 slot), making this adapter redundant.
+  
+### Very technical stuff: polarity inversion
+  
+One quirk of SATA is that its B (receive) differential pair has a different polarity than that of the A (transmit) pair or PCIe RX/TX pairs, and unlike most PCIe implementations, it does *not* tolerate polarity inversion. Since the chipset's SerDes expects the same lane polarities in both SATA and PCIe modes, motherboards account for this quirk by inverting the polarity of the first SATA/PCIe lane going to the M.2 slot:
+
+| M.2 pin | PCB | Chipset pin |
+| ---: | :---: | :--- |
+| PCIe TX0+ or SATA A+ | 🡸 | PCIe TX0+ or SATA A+ |
+| PCIe TX0- or SATA A- | 🡸 | PCIe TX0- or SATA A- |
+| PCIe **RX0+** or SATA **B-** | 🡾 | PCIe **RX0-** or SATA **B-** |
+| PCIe **RX0-** or SATA **B+** | 🡽 | PCIe **RX0+** or SATA **B+** |
+| PCIe TXn+ | 🡸 | PCIe TXn+ or SATA A+ |
+| PCIe TXn- | 🡸 | PCIe TXn- or SATA A- |
+| PCIe **RXn+** | 🡺 |PCIe RXn+ or SATA **B+** |
+| PCIe **RXn-** | 🡺 | PCIe RXn- or SATA **B-** |
+
+Since I have yet to see a motherboard which inverts the RX polarity on *all lanes* (not just lane 0), this card inverts it on lanes 1-3 so that they can work properly in SATA mode. If you get connection errors (Linux dmesg: `SATA link down (SStatus 1 SControl 300)`) on ports 1-3, you somehow have a motherboard which also inverts lanes 1-3; if you're feeling adventurous, the [jumperable](https://github.com/richardg867/m2sata/tree/jumperable) branch has a variant of the board with jumper links to configure RX polarities at will.
 
 ## Acknowledgements
 
