@@ -1,6 +1,6 @@
 # M.2 SATA Port Reclaimer - Jumperable Version
 
-This is a special version of the card from the [main branch](https://github.com/richardg867/m2sata/tree/jumperable) with jumper links to control polarity of the SATA B lanes. See the main branch's readme for more information. This design is **untested** and may not work as reliably as the main one due to signal integrity implications.
+This is a special version of the card from the [main branch](https://github.com/richardg867/m2sata/tree/jumperable), with added jumper links to control polarity of the SATA B lanes. See the [main branch's readme](https://github.com/richardg867/m2sata#very-technical-stuff-polarity-inversion) for more information. This design is **untested** and may not work as reliably as the main one due to signal integrity implications.
 
 The jumpers, highlighted in red in the images below, can be configured individually for each port. Fill them in with solder bridges or 0Ω 0402 resistors.
 
