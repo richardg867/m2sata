@@ -42,7 +42,7 @@ One quirk of SATA is that its B (receive) differential pair has a different pola
 | PCIe **RXn+** | 🡺 |PCIe RXn+ or SATA **B+** |
 | PCIe **RXn-** | 🡺 | PCIe RXn- or SATA **B-** |
 
-Since I have yet to see a motherboard which inverts the RX polarity on *all lanes* (not just lane 0), this card inverts it on lanes 1-3 so that they can work properly in SATA mode. If you get connection errors (Linux dmesg: `SATA link down (SStatus 1 SControl 300)`) on ports 1-3, you somehow have a motherboard which also inverts lanes 1-3; if you're feeling adventurous, the [jumperable](https://github.com/richardg867/m2sata/tree/jumperable) branch has a variant of the board with jumper links to configure RX polarities at will.
+Since I have yet to see a motherboard which inverts the RX polarity on *all lanes* (not just lane 0), this card inverts it on lanes 1-3 so that they can work properly in SATA mode. If you get connection errors (Linux dmesg: `SATA link down (SStatus 1 SControl 300)`) on ports 1-3 even with high quality cables, you somehow have a motherboard which also inverts lanes 1-3; if you're feeling adventurous, the [jumperable](https://github.com/richardg867/m2sata/tree/jumperable) branch has a variant of the board with jumper links to configure RX polarities at will.
 
 ## Acknowledgements
 
