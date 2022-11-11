@@ -324,11 +324,11 @@
     (property "Sheetname" "")
     (path "/9b4bbac3-04ea-4d48-8cc4-0672104ab0fb")
     (attr smd)
-    (fp_text reference "R7" (at 0 -1.17 90) (layer "F.SilkS")
+    (fp_text reference "R7" (at 0 -1.17 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 1f99b5c8-0581-4114-90dd-53d04a98d39c)
     )
-    (fp_text value "0R" (at 0 1.17 90) (layer "F.Fab")
+    (fp_text value "0R" (at 0 1.17 90) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 71d6b734-e27d-4a44-be9d-25073bcd6dee)
     )
@@ -366,11 +366,11 @@
     (property "Sheetname" "")
     (path "/c4c9616f-b764-4e40-b21d-89da255b9ca9")
     (attr smd)
-    (fp_text reference "R12" (at 0 -1.17) (layer "F.SilkS")
+    (fp_text reference "R12" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp f91317e5-06de-4346-bf76-b7f5ff33dbd1)
     )
-    (fp_text value "0R" (at 0 1.17) (layer "F.Fab")
+    (fp_text value "0R" (at 0 1.17) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 3e38ce3c-2e3c-4597-b2dd-42716268d95c)
     )
@@ -450,11 +450,11 @@
     (property "Sheetname" "")
     (path "/bce0c523-3fa6-44d4-a3eb-80fd726fb584")
     (attr smd)
-    (fp_text reference "R11" (at 0 -1.17 90) (layer "F.SilkS")
+    (fp_text reference "R11" (at 0 -1.17 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 03d4d91b-d03f-420a-ba4b-fb3c1c9f7579)
     )
-    (fp_text value "0R" (at 0 1.17 90) (layer "F.Fab")
+    (fp_text value "0R" (at 0 1.17 90) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 248d2b0e-b3de-47ae-9705-a7626af44f94)
     )
@@ -578,11 +578,11 @@
     (property "Sheetname" "")
     (path "/f0711903-cbae-4212-9fdf-5b635f745351")
     (attr smd)
-    (fp_text reference "R6" (at 0 -1.17 90) (layer "F.SilkS")
+    (fp_text reference "R6" (at 0 -1.17 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp b9537d2d-0992-4f49-97fc-4512ce52835d)
     )
-    (fp_text value "0R" (at 0 1.17 90) (layer "F.Fab")
+    (fp_text value "0R" (at 0 1.17 90) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp c50729a5-1a27-40ab-8ee5-2fefff5bc42b)
     )
@@ -704,11 +704,11 @@
     (property "Sheetname" "")
     (path "/840c9526-f3ec-429e-a57e-d6e72e881648")
     (attr smd)
-    (fp_text reference "R10" (at 0 -1.17 90) (layer "F.SilkS")
+    (fp_text reference "R10" (at 0 -1.17 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 61da6979-cad4-49e1-bd2d-702dd7d800d6)
     )
-    (fp_text value "0R" (at 0 1.17 90) (layer "F.Fab")
+    (fp_text value "0R" (at 0 1.17 90) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 483feda7-82b5-42b7-9779-b93017d2a874)
     )
@@ -788,11 +788,11 @@
     (property "Sheetname" "")
     (path "/d146d22b-4bf5-4b48-9eb4-d443e85fa638")
     (attr smd)
-    (fp_text reference "R5" (at 0 -1.17) (layer "F.SilkS")
+    (fp_text reference "R5" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 59f5c4b4-f082-4360-829a-ec30e46c8038)
     )
-    (fp_text value "0R" (at 0 1.17) (layer "F.Fab")
+    (fp_text value "0R" (at 0 1.17) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp cd3559c9-dcb0-490d-8c0d-72b0234c8128)
     )
@@ -1008,8 +1008,8 @@
   (gr_text "Lane 0" (at 111.76 99.06) (layer "F.SilkS") (tstamp a3791844-26f8-4bd3-8fcb-647e17405d71)
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (gr_text "M.2 SATA Port Reclaimer\n2022 RichardG867\nBased on M.2 card designs by CRImier" (at 138.979011 105.270734) (layer "F.SilkS") (tstamp b2ca1e9e-d7c7-4bf2-8d8c-49b73115fbd2)
-    (effects (font (size 1.5 1.5) (thickness 0.3)))
+  (gr_text "M.2 SATA Port Reclaimer\n2022 RichardG867   (Jumperable Ver.)\nBased on M.2 card designs by CRImier" (at 102.5 105.270734) (layer "F.SilkS") (tstamp b2ca1e9e-d7c7-4bf2-8d8c-49b73115fbd2)
+    (effects (font (size 1.5 1.5) (thickness 0.3)) (justify left))
   )
 
   (via (at 115 97.5) (size 0.8) (drill 0.4) (layers "F.Cu" "B.Cu") (free) (net 1) (tstamp 012c4558-88f8-4b31-beb9-761e040d4626))
