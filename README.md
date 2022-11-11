@@ -37,8 +37,8 @@ One quirk of SATA is that its B (receive) differential pair has a different pola
 | ---: | :---: | :--- |
 | PCIe TX0+ or SATA A+ | 🡸 | PCIe TX0+ or SATA A+ |
 | PCIe TX0- or SATA A- | 🡸 | PCIe TX0- or SATA A- |
-| PCIe **RX0+** or SATA **B-** | 🡾 | PCIe **RX0-** or SATA **B-** |
-| PCIe **RX0-** or SATA **B+** | 🡽 | PCIe **RX0+** or SATA **B+** |
+| PCIe **RX0+** or SATA **B-** | 🡾 | PCIe **RX0+** or SATA **B+** |
+| PCIe **RX0-** or SATA **B+** | 🡽 | PCIe **RX0-** or SATA **B-** |
 | PCIe TXn+ | 🡸 | PCIe TXn+ or SATA A+ |
 | PCIe TXn- | 🡸 | PCIe TXn- or SATA A- |
 | PCIe **RXn+** | 🡺 |PCIe RXn+ or SATA **B+** |
